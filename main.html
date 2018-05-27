@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PolyPlan</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('45', { 'packages': ['timeline'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Task');
+            data.addColumn('date', 'Start Date');
+            data.addColumn('date', 'End Date');
+
+            data.addRows([
+                ['Bibliographical Study', new Date('2018-05-15'), new Date('2018-06-30')],
+                ['Writing Thesis Proposal', new Date('2018-06-30'), new Date('2018-07-30')],
+                ['Comprehensive Exam Preparation', new Date('2018-05-15'), new Date('2018-12-10')],
+                ['5 POLY courses', new Date('2018-08-01'), new Date('2018-12-20')],
+                ['First Conference Paper', new Date('2018-12-20'), new Date('2019-02-01')],
+                ['China Internship', new Date('2019-02-15'), new Date('2019-10-01')],
+                ['Second Conference Paper', new Date('2019-10-01'), new Date('2019-12-15')],
+                ['First Journal Paper', new Date('2020-01-15'), new Date('2020-03-15')],
+                ['Buffer Zone', new Date('2020-03-15'), new Date('2021-05-02')],
+                ['Thesis Defense', new Date('2021-05-01'), new Date('2021-05-02')]
+            ]);
+
+            var options = {
+                height: 450,
+                timeline: {
+                    //groupByRowLabel: true,
+                    showRowLabels: true
+                },
+                hAxis: {
+                    viewWindow: {
+                        min: new Date(2000, 8, 5),
+                        max: new Date(2014, 1, 5)
+                    },
+                    gridlines: {
+                        count: -1,
+                        units: {
+                            days: { format: 'MMM yyyy' }
+                        }
+                    }
+                }
+            };
+
+            var chart = new google.visualization.Timeline(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="chart_div"></div>
+</body>
+
+</html>
